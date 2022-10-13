@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Libros</title>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-around">
+            <form action="/crear/libro" method="POST" class="col-6 p-3">
+                <h1 class="text-center text-warning">Nuevo Libro</h1>
+                <div class="form-group">
+                    <label for="título">Título:</label>
+                    <input type="text" id="título" name="título" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="num_páginas">Número de Páginas:</label>
+                    <input type="number" id="num_páginas" name="num_páginas" class="form-control">
+                </div>
+                    <input type="submit" value="Crear" class="btn btn-warning">
+            </form>
+        </div>
+        <div class="card col-6 mx-auto">
+            <div class="card-body">
+                <h1 class="card-title">Todos los Libros</h1>
+                {% for libro in libros %}
+                    <p class="card-text"><a href="/libro/{{libro.id}}">{{libro.título}}</a></p>
+                {% endfor %}
+            </div>
+            <div class="card-footer">
+            <a href="/" class="btn btn-primary">Volver al Inicio</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

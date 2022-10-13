@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Mostrar Libro</title>
+</head>
+<body>
+    <div class="d-flex justify-content-around flex-wrap">
+        <div class="col-6">
+            <h2 class="text-center">Título: {{libro.título}}</h2>
+            <h4>Marcado como Favorito por:</h4>
+            {% for autor in libro.autores_que_marcaron_favorito %}
+            <h5>{{autor.nombre}}</h5>
+            {% endfor %}
+        </div>
+        <form action="/guardar/autor" method="POST" class="col-6">
+            <h2 class="text-info">Añadir Libro Favorito</h2>
+            <input type="hidden" name="libro_id" value="{{libro.id}}">
+            <div class="form-group">
+                <label for="autor_id">Para:</label>
+                <select name="autor_id" class="form-control">
+                    {% for autor in autores_sin_favorito %}
+                        <option value="{{autor.id}}">{{autor.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Añadir Libro" class="btn btn-success">
+        </form>
+    </div>
+    <a href="/" class="btn btn-primary">Volver al Inicio</a>
+</body>
+</html>
